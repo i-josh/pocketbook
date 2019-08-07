@@ -3,4 +3,6 @@
     <string name="navigation_drawer_open">drawer open</string>
     <string name="navigation_drawer_close">drawer close</string>
     <string name="edit_reminder_text">Edit Reminder</string>
+    <string name="reoordbuttondescription">reoordButtonDescription</string>
+    <string name="record_button_description">record_button_description</string>
 </resources>

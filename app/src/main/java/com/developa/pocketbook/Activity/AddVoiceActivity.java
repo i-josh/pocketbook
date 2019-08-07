@@ -1,8 +1,11 @@
 package com.developa.pocketbook.Activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +13,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.developa.pocketbook.Model.Voice;
 import com.developa.pocketbook.R;
+import com.developa.pocketbook.ViewModel.VoiceViewModel;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AddVoiceActivity extends AppCompatActivity {
 
@@ -24,6 +31,8 @@ public class AddVoiceActivity extends AppCompatActivity {
     private Button mStopButton;
     private MediaRecorder mMediaRecorder;
     private String mOutputFile;
+    private VoiceViewModel mVoiceViewModel;
+    private String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +44,24 @@ public class AddVoiceActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Record Voice");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        init();
+        mVoiceViewModel = ViewModelProviders.of(this).get(VoiceViewModel.class);
+        mVoiceViewModel.getAllVoices().observe(this, new Observer<List<Voice>>() {
+            @Override
+            public void onChanged(@Nullable List<Voice> voices) {
+                //get voices
+            }
+        });
+        initViews();
     }
 
-    private void init(){
+    private void initViews(){
         mRecordButton = findViewById(R.id.record_button);
         mPlayButton = findViewById(R.id.play_button);
         mStopButton = findViewById(R.id.stop_button);
         mChronometer = findViewById(R.id.chronometer);
         mPlayButton.setEnabled(false);
         mStopButton.setEnabled(false);
-        mOutputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";
+        mOutputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + fileName + ".3gp";
 
         mRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +111,8 @@ public class AddVoiceActivity extends AppCompatActivity {
     }
 
     private void startRecording() throws IOException {
-        String fileName = "audioTest" + ".mp3";
+        Toast.makeText(this, "recording started", Toast.LENGTH_SHORT).show();
+        //String fileName = "audioTest" + ".mp3";
         mMediaRecorder = new MediaRecorder();
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -107,16 +124,22 @@ public class AddVoiceActivity extends AppCompatActivity {
     }
 
     private void stopRecording() {
-        if (null != mMediaRecorder){
+        Toast.makeText(this, "recording stopped", Toast.LENGTH_SHORT).show();
+        if (mMediaRecorder != null){
             try {
                 mMediaRecorder.stop();
                 mMediaRecorder.reset();
                 mMediaRecorder.release();
                 mMediaRecorder = null;
+                getRecordTitle();
             }catch (NullPointerException e){
                 Toast.makeText(getApplicationContext(),"Recording Stopped",Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         }
+    }
+
+    private void getRecordTitle(){
+        //get title
     }
 }
