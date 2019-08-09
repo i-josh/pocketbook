@@ -32,16 +32,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:theme="@style/AppThemeNoActionBar"
             android:name=".Activity.AddEditNoteActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".Activity.ReadNoteActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".Activity.SettingActivity" />
+
         <activity android:name=".Activity.AddVoiceActivity"
             android:theme="@style/AppThemeNoActionBar"
             android:parentActivityName=".Activity.MainActivity"></activity>
