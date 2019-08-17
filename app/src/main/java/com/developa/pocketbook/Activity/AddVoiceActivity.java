@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.developa.pocketbook.Model.Voice;
@@ -31,8 +30,7 @@ public class AddVoiceActivity extends AppCompatActivity {
     private Button mStopButton;
     private MediaRecorder mMediaRecorder;
     private String mOutputFile;
-    private VoiceViewModel mVoiceViewModel;
-    private String fileName;
+    //private String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +42,8 @@ public class AddVoiceActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Record Voice");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mVoiceViewModel = ViewModelProviders.of(this).get(VoiceViewModel.class);
-        mVoiceViewModel.getAllVoices().observe(this, new Observer<List<Voice>>() {
+        VoiceViewModel voiceViewModel = ViewModelProviders.of(this).get(VoiceViewModel.class);
+        voiceViewModel.getAllVoices().observe(this, new Observer<List<Voice>>() {
             @Override
             public void onChanged(@Nullable List<Voice> voices) {
                 //get voices
@@ -61,7 +59,7 @@ public class AddVoiceActivity extends AppCompatActivity {
         mChronometer = findViewById(R.id.chronometer);
         mPlayButton.setEnabled(false);
         mStopButton.setEnabled(false);
-        mOutputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + fileName + ".3gp";
+        mOutputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "record.3gp";
 
         mRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +123,7 @@ public class AddVoiceActivity extends AppCompatActivity {
 
     private void stopRecording() {
         Toast.makeText(this, "recording stopped", Toast.LENGTH_SHORT).show();
-        if (mMediaRecorder != null){
+        if ( null != mMediaRecorder ){
             try {
                 mMediaRecorder.stop();
                 mMediaRecorder.reset();

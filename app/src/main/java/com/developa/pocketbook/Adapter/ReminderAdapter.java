@@ -46,8 +46,9 @@ public class ReminderAdapter extends ListAdapter<Reminder,ReminderAdapter.Remind
     public void onBindViewHolder(@NonNull ReminderHolder reminderHolder, int i) {
         Reminder currentReminder = getItem(i);
 
+        String reminderTimeStampText = currentReminder.getNotifyDate() + " " + currentReminder.getNotifyTime();
         reminderHolder.reminderBody.setText(currentReminder.getBody());
-        reminderHolder.reminderTimeStamp.setText(currentReminder.getNotifyDate() + " " + currentReminder.getNotifyTime());
+        reminderHolder.reminderTimeStamp.setText(reminderTimeStampText);
 
     }
 
@@ -60,7 +61,7 @@ public class ReminderAdapter extends ListAdapter<Reminder,ReminderAdapter.Remind
         private TextView reminderBody;
         private TextView reminderTimeStamp;
 
-        public ReminderHolder(@NonNull View itemView) {
+        ReminderHolder(@NonNull View itemView) {
             super(itemView);
 
             reminderBody = itemView.findViewById(R.id.reminder_body);

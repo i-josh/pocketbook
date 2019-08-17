@@ -71,7 +71,7 @@ public class NoteAdapter extends ListAdapter<Note,NoteAdapter.NoteHolder> {
         private TextView noteBody;
         private TextView noteTimeStamp;
 
-        public NoteHolder(@NonNull View itemView) {
+        NoteHolder(@NonNull View itemView) {
             super(itemView);
 
             noteImage = itemView.findViewById(R.id.note_image);
