@@ -6,6 +6,12 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "voice_table")
 public class Voice {
 
+    public Voice(String title, String voiceFilePath, long voiceDuration) {
+        this.title = title;
+        this.voiceFilePath = voiceFilePath;
+        this.voiceDuration = voiceDuration;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -15,13 +21,13 @@ public class Voice {
 
     private String timeStamp;
 
-    private String voiceDuration;
+    private long voiceDuration;
 
-    public String getVoiceDuration() {
+    public long getVoiceDuration() {
         return voiceDuration;
     }
 
-    public void setVoiceDuration(String voiceDuration) {
+    public void setVoiceDuration(long voiceDuration) {
         this.voiceDuration = voiceDuration;
     }
 

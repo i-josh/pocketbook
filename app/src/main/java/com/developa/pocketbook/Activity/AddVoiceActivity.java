@@ -39,9 +39,12 @@ public class AddVoiceActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.add_voice_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Record Voice");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Record Voice");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         VoiceViewModel voiceViewModel = ViewModelProviders.of(this).get(VoiceViewModel.class);
         voiceViewModel.getAllVoices().observe(this, new Observer<List<Voice>>() {
             @Override

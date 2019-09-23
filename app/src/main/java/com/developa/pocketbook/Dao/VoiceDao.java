@@ -22,6 +22,9 @@ public interface VoiceDao {
     @Query("DELETE FROM VOICE_TABLE")
     void deleteAllVoices();
 
+    @Query("SELECT ALL ID FROM VOICE_TABLE")
+    int getCount();
+
     @Query("SELECT * FROM VOICE_TABLE ORDER BY ID DESC")
     LiveData<List<Voice>> getAllVoices();
 }

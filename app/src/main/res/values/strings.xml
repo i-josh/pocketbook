@@ -5,4 +5,6 @@
     <string name="edit_reminder_text">Edit Reminder</string>
     <string name="reoordbuttondescription">reoordButtonDescription</string>
     <string name="record_button_description">record_button_description</string>
+    <string name="default_file_name">Record</string>
+    <string name="toast_recording_finish">Recording Finished</string>
 </resources>

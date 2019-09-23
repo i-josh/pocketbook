@@ -48,6 +48,8 @@
         <activity android:name=".Activity.AddVoiceActivity"
             android:theme="@style/AppThemeNoActionBar"
             android:parentActivityName=".Activity.MainActivity"></activity>
+
+        <service android:name=".service.RecordService" />
     </application>
 
 </manifest>
