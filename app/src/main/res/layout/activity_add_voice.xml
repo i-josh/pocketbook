@@ -1,75 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark"
-    tools:context=".Activity.AddVoiceActivity">
+    android:layout_width="match_parent">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/add_voice_toolbar"
+    <LinearLayout
+        android:id="@+id/r_voice_header"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@android:color/holo_orange_dark"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Chronometer
-        android:id="@+id/chronometer"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:padding="5dp"
-        android:textSize="50sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_voice_toolbar" />
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18 Apr 2019"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recording"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:50/1:54"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <ImageView
+        android:id="@+id/r_voice_image"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/r_voice_btn_row1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_voice_header"
+        app:srcCompat="@android:color/black" />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
-            android:background="@color/transparentWhite">
-
-            <Button
-                android:id="@+id/stop_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="50dp"
-                android:background="@drawable/stop_button_background"
-                />
-
-            <Button
-                android:id="@+id/play_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/play_button_background"
-                />
-        </RelativeLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/r_voice_btn_row1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/r_voice_btn_row2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/record_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/record_button_background"
-            android:contentDescription="@string/record_button_description" />
+            android:id="@+id/btn_voice_cut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_content_cut_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <ImageButton
+            android:id="@+id/btn_voice_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_play_black"
+            app:layout_constraintEnd_toStartOf="@+id/btn_voice_delete"
+            app:layout_constraintStart_toEndOf="@+id/btn_voice_cut"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_voice_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_delete_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/r_voice_btn_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_voice_unknown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_stop_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_voice_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_record_red"
+            app:layout_constraintEnd_toStartOf="@+id/btn_voice_save"
+            app:layout_constraintStart_toEndOf="@+id/btn_voice_unknown"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_voice_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/record_voice_imgbtn_background"
+            android:elevation="20dp"
+            android:src="@drawable/ic_save_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

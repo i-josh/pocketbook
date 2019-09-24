@@ -12,7 +12,7 @@ import com.developa.pocketbook.Dao.NoteDao;
 import com.developa.pocketbook.Dao.ReminderDao;
 import com.developa.pocketbook.Dao.VoiceDao;
 
-@Database(entities = {Note.class,Reminder.class,Voice.class},version = 5)
+@Database(entities = {Note.class,Reminder.class,Voice.class},version = 5,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

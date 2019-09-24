@@ -1,6 +1,7 @@
 package com.developa.pocketbook.Model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "voice_table")
@@ -31,6 +32,7 @@ public class Voice {
         this.voiceDuration = voiceDuration;
     }
 
+    @Ignore
     public Voice(String title) {
         this.title = title;
     }
