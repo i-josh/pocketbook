@@ -7,18 +7,15 @@ import android.content.Context;
 
 import com.developa.pocketbook.Model.Note;
 import com.developa.pocketbook.Model.Reminder;
-import com.developa.pocketbook.Model.Voice;
 import com.developa.pocketbook.Dao.NoteDao;
 import com.developa.pocketbook.Dao.ReminderDao;
-import com.developa.pocketbook.Dao.VoiceDao;
 
-@Database(entities = {Note.class,Reminder.class,Voice.class},version = 5,exportSchema = false)
+@Database(entities = {Note.class,Reminder.class},version = 5,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
     public abstract NoteDao mNoteDao();
     public abstract ReminderDao mReminderDao();
-    public abstract VoiceDao mVoiceDao();
 
     public static synchronized AppDatabase getInstance(Context context){
         if (instance == null){

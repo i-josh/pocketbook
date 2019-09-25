@@ -19,7 +19,6 @@ import android.view.View;
 
 import com.developa.pocketbook.Fragment.NoteFragment;
 import com.developa.pocketbook.Fragment.ReminderFragment;
-import com.developa.pocketbook.Fragment.VoiceFragment;
 import com.developa.pocketbook.R;
 
 import java.util.ArrayList;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new NoteFragment());
         adapter.addFragment(new ReminderFragment());
-        adapter.addFragment(new VoiceFragment());
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.getTabAt(0).setText("Notes");
         tabLayout.getTabAt(1).setText("Reminders");
-        tabLayout.getTabAt(2).setText("Voice Notes");
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter{
