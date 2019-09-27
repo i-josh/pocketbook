@@ -43,7 +43,6 @@
             android:name=".Activity.ReadNoteActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".Activity.SettingActivity" />
 
     </application>
 
