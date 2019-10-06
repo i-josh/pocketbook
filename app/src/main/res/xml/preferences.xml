@@ -6,9 +6,7 @@
             android:key="theme"
             android:title="Dark Theme"
             android:summary="Choose night mode"
-            android:icon="@drawable/ic_setting"
+            android:icon="@drawable/ic_brightness"
             android:defaultValue="false"/>
     </PreferenceCategory>
-
-
 </PreferenceScreen>

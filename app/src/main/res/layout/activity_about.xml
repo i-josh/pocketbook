@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.AboutActivity"
-    android:background="@color/black">
+    android:background="?attr/backgroundColor">
 
     <TextView
         android:id="@+id/textView2"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Pocketbook"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/textColor"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="50dp"
         android:layout_height="4dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -37,6 +37,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Version"
+        android:textSize="12sp"
         android:textColor="@color/mildBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -46,9 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="2dp"
         android:text="1.0.0"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -60,6 +60,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Author"
+        android:textSize="12sp"
         android:textColor="@color/mildBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -69,9 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="2dp"
         android:text="Joshua Ihiabe"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -83,6 +83,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Last Updated"
+        android:textSize="12sp"
         android:textColor="@color/mildBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -92,9 +93,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="2dp"
         android:text="September 2019"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -106,9 +106,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Feedback"
-        android:drawableStart="@drawable/ic_email"
         android:drawablePadding="10dp"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

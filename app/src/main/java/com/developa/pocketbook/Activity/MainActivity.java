@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,14 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    boolean hasThemeSwitchChanged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean theme = preferences.getBoolean("theme",false);
-        if (theme){
+        boolean theme = preferences.getBoolean("theme", false);
+        if (theme)
             setTheme(R.style.DarkThemeNoActionBar);
-        }
         super.onCreate(savedInstanceState);
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
@@ -49,16 +51,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initViewPager();
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(false);
         toggle.setHomeAsUpIndicator(R.drawable.ic_menu);
         toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawer.isDrawerVisible(GravityCompat.START)){
+                if (drawer.isDrawerVisible(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
-                }else {
+                } else {
                     drawer.openDrawer(GravityCompat.START);
                 }
             }
@@ -70,7 +72,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void initViewPager(){
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    private void initViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new NoteFragment());
@@ -81,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(getResources().getColor(R.color.transparentWhite),getResources().getColor(android.R.color.white));
+        tabLayout.setTabTextColors(getResources().getColor(R.color.transparentWhite), getResources().getColor(android.R.color.white));
 
         tabLayout.getTabAt(0).setText("Notes");
         tabLayout.getTabAt(1).setText("Reminders");
@@ -89,13 +96,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.drawer_home)
+            startActivity(new Intent(this, MainActivity.class));
+        else if (id == R.id.drawer_feedback){
+            Intent feedback = new Intent(Intent.ACTION_SEND);
+            feedback.setType("message/rfc822");
+            String[] s = {"jihiabe@gmail.com"} ;
+            feedback.putExtra(Intent.EXTRA_EMAIL,s);
+            Intent chooser = Intent.createChooser(feedback, "Launch Email");
+            startActivity(chooser);
+        }
+        else if (id == R.id.drawer_about )
+            startActivity(new Intent(this, AboutActivity.class));
+        else if (id == R.id.drawer_setting){
+            startActivity(new Intent(this, SettingActivity.class));
+            finish();
+        }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    class SectionsPagerAdapter extends FragmentPagerAdapter{
+    class SectionsPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
 
-        SectionsPagerAdapter(FragmentManager fm){
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -110,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return mFragmentList.size();
         }
 
-        void addFragment(Fragment fragment){
+        void addFragment(Fragment fragment) {
             mFragmentList.add(fragment);
         }
     }
@@ -118,22 +145,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu,menu);
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.settings:
-                startActivity(new Intent(this,SettingActivity.class));
+                startActivity(new Intent(this, SettingActivity.class));
+                finish();
                 return true;
             case R.id.about:
-                startActivity(new Intent(this,AboutActivity.class));
+                startActivity(new Intent(this, AboutActivity.class));
                 return true;
             default:
-               return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 }

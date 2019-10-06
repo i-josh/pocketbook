@@ -44,6 +44,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
             setTheme(R.style.DarkThemeNoActionBar);
         }
         super.onCreate(savedInstanceState);
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         setContentView(R.layout.activity_add_edit_note);
 
         Toolbar toolbar = findViewById(R.id.add_edit_toolbar);
