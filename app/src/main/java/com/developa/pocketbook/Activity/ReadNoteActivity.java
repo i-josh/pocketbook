@@ -1,12 +1,9 @@
 package com.developa.pocketbook.Activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +15,12 @@ import com.developa.pocketbook.Fragment.NoteFragment;
 import com.developa.pocketbook.Model.Note;
 import com.developa.pocketbook.R;
 import com.developa.pocketbook.ViewModel.NoteViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.PreferenceManager;
 
 public class ReadNoteActivity extends AppCompatActivity {
     private NoteViewModel mViewModel;
@@ -28,6 +31,11 @@ public class ReadNoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean theme = preferences.getBoolean("theme",false);
+        if (theme){
+            setTheme(R.style.DarkThemeNoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_note);
 

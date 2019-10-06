@@ -1,10 +1,8 @@
 package com.developa.pocketbook.Activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +19,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.PreferenceManager;
+
 public class AddEditNoteActivity extends AppCompatActivity {
     private View customWarningToast;
 
@@ -35,6 +38,11 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean theme = preferences.getBoolean("theme",false);
+        if (theme){
+            setTheme(R.style.DarkThemeNoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_note);
 

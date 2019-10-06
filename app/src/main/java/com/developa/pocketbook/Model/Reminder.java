@@ -1,9 +1,7 @@
 package com.developa.pocketbook.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Calendar;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "reminder_table")
 public class Reminder {

@@ -7,10 +7,33 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- light theme -->
+    <style name="LightThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="backgroundColor">@android:color/white</item>
+        <item name="cardBackgrounds">@android:color/white</item>
+        <item name="textColor">#000</item>
+        <item name="tabsBackground">@color/colorPrimary</item>
+        <item name="toolbarBackground">@color/colorPrimary</item>
+        <item name="tabIndicators">@android:color/white</item>
     </style>
+
+    <!-- dark theme -->
+    <style name="DarkThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/mildBlack</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="backgroundColor">@color/black</item>
+        <item name="cardBackgrounds">@color/mildBlack</item>
+        <item name="textColor">#fff</item>
+        <item name="tabsBackground">@color/mildBlack</item>
+        <item name="toolbarBackground">@color/mildBlack</item>
+        <item name="tabIndicators">@color/colorAccent</item>
+    </style>
+
 
 </resources>

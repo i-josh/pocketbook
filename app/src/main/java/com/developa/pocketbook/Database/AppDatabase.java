@@ -1,14 +1,15 @@
 package com.developa.pocketbook.Database;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.developa.pocketbook.Model.Note;
 import com.developa.pocketbook.Model.Reminder;
 import com.developa.pocketbook.Dao.NoteDao;
 import com.developa.pocketbook.Dao.ReminderDao;
+
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 @Database(entities = {Note.class,Reminder.class},version = 5,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {

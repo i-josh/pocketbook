@@ -1,17 +1,23 @@
 package com.developa.pocketbook.Activity;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.core.view.GravityCompat;
+import androidx.preference.PreferenceManager;
+import androidx.viewpager.widget.ViewPager;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,10 +30,14 @@ import com.developa.pocketbook.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean theme = preferences.getBoolean("theme",false);
+        if (theme){
+            setTheme(R.style.DarkThemeNoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -55,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         });
         toggle.syncState();
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void initViewPager(){
@@ -68,19 +81,25 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.black));
+        tabLayout.setTabTextColors(getResources().getColor(R.color.transparentWhite),getResources().getColor(android.R.color.white));
 
         tabLayout.getTabAt(0).setText("Notes");
         tabLayout.getTabAt(1).setText("Reminders");
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return true;
+    }
+
     class SectionsPagerAdapter extends FragmentPagerAdapter{
         private final List<Fragment> mFragmentList = new ArrayList<>();
 
-        public SectionsPagerAdapter(FragmentManager fm){
+        SectionsPagerAdapter(FragmentManager fm){
             super(fm);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int i) {
             return mFragmentList.get(i);
@@ -91,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment){
+        void addFragment(Fragment fragment){
             mFragmentList.add(fragment);
         }
     }
@@ -107,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
+            case R.id.settings:
+                startActivity(new Intent(this,SettingActivity.class));
+                return true;
+            case R.id.about:
+                startActivity(new Intent(this,AboutActivity.class));
+                return true;
             default:
                return super.onOptionsItemSelected(item);
         }

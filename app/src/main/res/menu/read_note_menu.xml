@@ -4,13 +4,13 @@
 
     <item android:title="Mail Note"
         android:id="@+id/mail_note"
-        android:icon="@drawable/ic_email_black_24dp"
+        android:icon="@drawable/ic_email"
         app:showAsAction="ifRoom"/>
 
     <item
         android:title="Delete Note"
         android:id="@+id/delete_note"
-        android:icon="@drawable/ic_delete_black_24dp"
+        android:icon="@drawable/ic_delete"
         app:showAsAction="ifRoom"/>
 
 

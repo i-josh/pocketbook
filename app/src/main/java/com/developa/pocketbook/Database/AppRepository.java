@@ -1,7 +1,6 @@
 package com.developa.pocketbook.Database;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.developa.pocketbook.Dao.NoteDao;
@@ -10,6 +9,8 @@ import com.developa.pocketbook.Model.Note;
 import com.developa.pocketbook.Model.Reminder;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
 
 public class AppRepository {
 

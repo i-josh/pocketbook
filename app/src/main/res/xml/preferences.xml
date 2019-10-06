@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Appearance">
+        <SwitchPreference
+            android:key="theme"
+            android:title="Dark Theme"
+            android:summary="Choose night mode"
+            android:icon="@drawable/ic_setting"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
